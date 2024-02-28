@@ -1,3 +1,7 @@
+if ! test -e /data/ssh/KEEP_ON_UNINSTALL ; then
+    rm -rf /data/ssh
+fi
+
 # Don't modify anything after this
 if [ -f $INFO ]; then
   while read LINE; do
