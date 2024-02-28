@@ -34,26 +34,6 @@ POSTFSDATA=false
 LATESTARTSERVICE=true
 
 ##########################################################################################
-# Replace list
-##########################################################################################
-
-# List all directories you want to directly replace in the system
-# Check the documentations for more info why you would need this
-
-# Construct your list in the following format
-# This is an example
-REPLACE_EXAMPLE="
-/system/app/Youtube
-/system/priv-app/SystemUI
-/system/priv-app/Settings
-/system/framework
-"
-
-# Construct your own list here
-REPLACE="
-"
-
-##########################################################################################
 #
 # Function Callbacks
 #
@@ -131,22 +111,22 @@ print_modname() {
 
 on_install() {
   local TMPDIR="$MODPATH/tmp"
-  ui_print "[0/7] Preparing module directory"
+  ui_print "[0/6] Preparing module directory"
   mkdir -p "$TMPDIR"
   mkdir -p "$MODPATH/usr/bin/raw"
 
-  ui_print "[1/7] Extracting architecture unspecific module files"
+  ui_print "[1/6] Extracting architecture unspecific module files"
   unzip -o "$ZIPFILE" 'common/opensshd.init' -d "$MODPATH/tmp" >&2
   unzip -o "$ZIPFILE" 'common/magisk_ssh_library_wrapper' -d "$MODPATH/tmp" >&2
   mv "$TMPDIR/common/opensshd.init" "$MODPATH"
   mv "$TMPDIR/common/magisk_ssh_library_wrapper" "$MODPATH/usr/bin/raw"
 
-  ui_print "[2/7] Extracting libraries and binaries for $ARCH"
+  ui_print "[2/6] Extracting libraries and binaries for $ARCH"
   unzip -o "$ZIPFILE" "arch/$ARCH/*" -d "$TMPDIR" >&2
   mv "$TMPDIR/arch/$ARCH/lib" "$MODPATH/usr"
   mv "$TMPDIR/arch/$ARCH/bin"/* "$MODPATH/usr/bin"
 
-  ui_print "[3/7] Configuring library path wrapper"
+  ui_print "[3/6] Configuring library path wrapper"
   for f in scp sftp sftp-server ssh ssh-keygen sshd rsync; do
     mv "$MODPATH/usr/bin/$f" "$MODPATH/usr/bin/raw/$f"
     ln -s ./raw/magisk_ssh_library_wrapper "$MODPATH/usr/bin/$f"
