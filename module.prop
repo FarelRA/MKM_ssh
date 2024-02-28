@@ -1,7 +1,7 @@
-id=MMT-Ex
-name=Magisk Module Template Extended
-version=v3.5
-versionCode=17
-author=Zackptg5
-description=Magisk Module Template Extended
-updateJson=https://raw.githubusercontent.com/Zackptg5/MMT-Extended/master/update.json
+id=ssh
+name=SSH for Magisk
+version=v0.16
+versionCode=18
+author=D4rCM4rC and Contributors
+description=OpenSSH and Rsync bundled with simple start scripts for Android with Magisk
+updateJson=https://gitlab.com/d4rcm4rc/MagiskSSH/-/raw/master/update.json
